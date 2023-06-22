@@ -1,0 +1,17 @@
+export const neighbours = {
+  "one-spot": ["two-spot", "five-spot"],
+  "two-spot": ["one-spot", "six-spot", "three-spot"],
+  "three-spot": ["two-spot", "four-spot", "seven-spot"],
+  "four-spot": ["three-spot", "eight-spot"],
+  "five-spot": ["one-spot", "six-spot", "nine-spot"],
+  "six-spot": ["two-spot", "seven-spot", "ten-spot", "five-spot"],
+  "seven-spot": ["six-spot", "three-spot", "eight-spot", "eleven-spot"],
+  "eight-spot": ["four-spot", "seven-spot", "twelve-spot"],
+  "nine-spot": ["five-spot", "ten-spot", "thirteen-spot"],
+  "ten-spot": ["nine-spot", "six-spot", "eleven-spot", "fourteen-spot"],
+  "eleven-spot": ["ten-spot", "seven-spot", "fifteen-spot", "twelve-spot"],
+  "twelve-spot": ["eight-spot", "eleven-spot", "empty-spot"],
+  "thirteen-spot": ["nine-spot", "fourteen-spot"],
+  "fourteen-spot": ["thirteen-spot", "ten-spot", "fifteen-spot"],
+  "fifteen-spot": ["fourteen-spot", "eleven-spot", "empty-spot"],
+};

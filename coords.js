@@ -1,31 +1,24 @@
+const spotsMax = 15;
+
 let state = [
   {
     name: "one",
     value: 1,
     curLoc: null,
     legalLoc: "one-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
-    name: "one",
+    name: "two",
     value: 2,
     curLoc: null,
     legalLoc: "two-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "three",
     value: 3,
     curLoc: null,
     legalLoc: "three-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -33,18 +26,12 @@ let state = [
     value: 4,
     curLoc: null,
     legalLoc: "four-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "five",
     value: 5,
     curLoc: null,
     legalLoc: "five-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -52,18 +39,12 @@ let state = [
     value: 6,
     curLoc: null,
     legalLoc: "six-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "seven",
     value: 7,
     curLoc: null,
     legalLoc: "seven-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -71,27 +52,18 @@ let state = [
     value: 8,
     curLoc: null,
     legalLoc: "eight-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "nine",
     value: 9,
     curLoc: null,
     legalLoc: "nine-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "ten",
     value: 10,
     curLoc: null,
     legalLoc: "ten-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -99,9 +71,6 @@ let state = [
     value: 11,
     curLoc: null,
     legalLoc: "eleven-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -109,27 +78,18 @@ let state = [
     value: 12,
     curLoc: null,
     legalLoc: "twelve-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "thirteen",
     value: 13,
     curLoc: null,
     legalLoc: "thirsteen-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
   {
     name: "fourteen",
     value: 14,
     curLoc: null,
     legalLoc: "fourteen-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -137,9 +97,6 @@ let state = [
     value: 15,
     curLoc: null,
     legalLoc: "fifteen-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 
   {
@@ -147,19 +104,36 @@ let state = [
     value: "",
     curLoc: null,
     legalLoc: "empty-spot",
-    checkCorrect: function () {
-      return this.curLoc === this.legalLoc;
-    },
   },
 ];
 
 export function stateInit() {
-  console.log(state);
-  state = state.map((obj) => {
+  state.map((obj) => {
     obj.curLoc = obj.legalLoc;
+    console.log(obj.curLoc, obj.legalLoc);
   });
-  console.log("new", state);
+  return state;
+}
+function getRandom(max) {
+  return Math.floor(Math.random() * max);
+}
+export function randomizeState() {
+  const availableSpots = state.map((obj) => obj.legalLoc);
+  availableSpots.pop();
+  const shuffledArray = availableSpots.sort((a, b) => 0.5 - Math.random());
+  state.map((obj) => {
+    obj.curLoc = shuffledArray.at(-1);
+    shuffledArray.pop();
+  });
+  state[15].curLoc = state[15].legalLoc;
   return state;
 }
 
+function checkCorrect(array) {
+  const arrayForCheck = array.filter((obj) => obj.curLoc === obj.legalLoc);
+  return array.length === arrayForCheck.length;
+}
+
 export { state };
+// const result = getResults();
+// win(result)
