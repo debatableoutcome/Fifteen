@@ -6,12 +6,11 @@ const dom = {
   btnStart: getEl(".start"),
   moves: getEl(".moves"),
   timer: getEl(".timer"),
-  // form: getEl(".date-form"),
-  // dateSelect: getEl("#date-select"),
-  // nameInput: getEl("#name-input"),
-  // btnAdd: getEl(".btn-add"),
-  // heading: getEl(".heading"),
-  // outputUI: getEl("#output"),
+  loseView: getEl(".lose-view"),
+  winView: getEl(".win-view"),
+  bestResultView: getEl(".best-result-view"),
+  bestMoves: getEl(".best-moves"),
+  playField: getEl(".play-field"),
 };
 
 export default dom;

@@ -14,4 +14,5 @@ export const neighbours = {
   "thirteen-spot": ["nine-spot", "fourteen-spot"],
   "fourteen-spot": ["thirteen-spot", "ten-spot", "fifteen-spot"],
   "fifteen-spot": ["fourteen-spot", "eleven-spot", "empty-spot"],
+  "empty-spot": ["fifteen-spot", "twelve-spot"],
 };

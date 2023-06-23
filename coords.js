@@ -83,7 +83,7 @@ let state = [
     name: "thirteen",
     value: 13,
     curLoc: null,
-    legalLoc: "thirsteen-spot",
+    legalLoc: "thirteen-spot",
   },
   {
     name: "fourteen",
@@ -110,13 +110,12 @@ let state = [
 export function stateInit() {
   state.map((obj) => {
     obj.curLoc = obj.legalLoc;
-    console.log(obj.curLoc, obj.legalLoc);
   });
   return state;
 }
-function getRandom(max) {
-  return Math.floor(Math.random() * max);
-}
+// function getRandom(max) {
+//   return Math.floor(Math.random() * max);
+// }
 export function randomizeState() {
   const availableSpots = state.map((obj) => obj.legalLoc);
   availableSpots.pop();
@@ -129,11 +128,12 @@ export function randomizeState() {
   return state;
 }
 
-function checkCorrect(array) {
+export function checkCorrect(array) {
+  console.log(array);
   const arrayForCheck = array.filter((obj) => obj.curLoc === obj.legalLoc);
   return array.length === arrayForCheck.length;
 }
 
 export { state };
-// const result = getResults();
-// win(result)
+
+export let records = [];
