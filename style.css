@@ -16,7 +16,7 @@ body {
 
 main {
   background-color: black;
-  height: 310px;
+  height: 320px;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -55,18 +55,15 @@ main {
   width: 100px;
 }
 .moves,
-.timer {
+.timer,
+.win-moves {
   padding-top: 5px;
   font-size: 14px;
   height: 30px;
   width: 50px;
-}
-.moves {
   text-align: center;
 }
-.timer {
-  text-align: center;
-}
+
 .parent-nums {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -214,6 +211,12 @@ main {
   grid-column: 4 / 5;
   grid-row: 4 / 5;
 }
+.win-view {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .best-result-view {
   display: flex;
@@ -221,6 +224,12 @@ main {
   justify-content: center;
   flex-direction: column;
 }
+.game-name {
+  font-weight: 700;
+  font-size: 28px;
+  color: antiquewhite;
+}
+
 footer {
   border: antiquewhite 1px solid;
   padding: 10px;
@@ -233,17 +242,11 @@ footer {
   font-size: 14px;
   font-weight: 700;
   color: antiquewhite;
-  height: 20%;
+  height: 30%;
   width: 100%;
   background-image: url("img/chalkboard.jpg");
 }
 
-.win-bc {
-  background-color: rgb(187, 13, 169);
-}
-.win-color {
-  background-color: rgb(187, 13, 169);
-}
 .hidden {
   display: none;
 }

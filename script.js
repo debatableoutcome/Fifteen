@@ -1,17 +1,29 @@
 "use strict";
 import dom from "./dom.js";
+import { store } from "./store.js";
 import { neighbours } from "./rules.js";
-import {
-  checkCorrect,
-  randomizeState,
-  records,
-  state,
-  stateInit,
-} from "./coords.js";
+import { checkCorrect, state, stateTest, stateInit } from "./coords.js";
 
+let records = store.get("records") || [];
 let moves = 0;
 const initialTime = 1200;
 
+// Audio
+
+function audioStart() {
+  let playStart = new Audio("audio/ding.mp3");
+  playStart.play();
+}
+
+function audioLose() {
+  let playLose = new Audio("audio/lose.mp3");
+  playLose.play();
+}
+
+function audioWin() {
+  let playWin = new Audio("audio/win.mp3");
+  playWin.play();
+}
 const isNeighbour = (emptyCurLoc, clickedLoc) =>
   neighbours[clickedLoc].includes(emptyCurLoc);
 
@@ -27,21 +39,19 @@ function prepareHTML(array) {
 }
 
 function renderTiles(nodes) {
-  if (checkCorrect(state) && moves > 0) {
-    console.log("You WIN!");
-    dom.playField.classList.add("win-bc");
-    dom.timer.classList.add("win-color");
-    records.push(moves);
-    return win();
-  }
   if (!nodes) return;
   const html = nodes.join(",").toString().replaceAll(",", "\n");
   dom.parentNums.innerHTML = "";
   dom.parentNums.innerHTML += html;
+
+  if (checkCorrect(state) && moves > 0) {
+    records.push(moves);
+    store.set("records", records);
+    return win();
+  }
 }
 
 function detectLocs(event) {
-  console.log(event.target);
   const clicked = event.target.closest(".square");
   const id = clicked.id;
   const clickedLoc = clicked.dataset.loc;
@@ -85,29 +95,38 @@ function open() {
   const array = stateInit();
   if (records.length > 0) {
     const { moves, time } = getMin(records);
+    dom.gameName.classList.add("hidden");
     dom.bestMoves.textContent = moves;
-    dom.timeResult.textContent = time;
+    // dom.timeResult.textContent = time;
   }
   return prepareHTML(array);
 }
 function gameOver() {
+  audioLose();
   clearInterval(timer);
   blockTiles();
+  dom.gameName.classList.add("hidden");
   dom.bestResultView.classList.add("hidden");
   dom.loseView.classList.remove("hidden");
 }
 
 function win() {
   clearInterval(timer);
+  audioWin();
   records.push(moves);
+  store.set("records", records);
   blockTiles();
+  dom.gameName.classList.add("hidden");
   dom.bestResultView.classList.add("hidden");
   dom.winView.classList.remove("hidden");
+  dom.winMoves.textContent = `${moves} moves`;
 }
 
 // &&&&&&&&&&&&&&&&&&&&&&& TIMER  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 function startGame() {
+  dom.winView.classList.add("hidden");
+  dom.loseView.classList.add("hidden");
   // reset timer and moves
   if (timer) clearInterval(timer);
   timer = startCountDown();
@@ -117,14 +136,18 @@ function startGame() {
     dom.bestResultView.classList.remove("hidden");
     const sorted = records.sort((a, b) => a - b);
     dom.bestMoves.textContent = sorted[0];
+    dom.gameName.classList.add("hidden");
+  } else {
+    dom.gameName.classList.remove("hidden");
   }
-  dom.winView.classList.add("hidden");
-  dom.loseView.classList.add("hidden");
+
   unblockTiles();
-  prepareHTML(randomizeState());
+  // prepareHTML(randomizeState());
+  prepareHTML(stateTest);
 }
 
 const startCountDown = function () {
+  audioStart();
   function tick() {
     const min = String(Math.trunc(time / 60)).padStart(2, 0);
     const sec = String(time % 60).padStart(2, 0);
@@ -159,12 +182,8 @@ dom.parentNums.addEventListener("click", (event) => detectLocs(event));
 // Sound
 // Settings - sound off/on
 // Settings - timer options?
-// Remember the record - render
-//localStorage
 
 // DONE TODAY:
-// Timer to stop at 0 00
-// Win and Lose UI
-// Before Play nonclickable
-// Count each move - render
-// restart button
+// Remember the record - render
+//localStorage
+// sound

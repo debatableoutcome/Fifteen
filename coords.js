@@ -107,6 +107,113 @@ let state = [
   },
 ];
 
+let stateTest = [
+  {
+    name: "one",
+    value: 1,
+    curLoc: "one-spot",
+    legalLoc: "one-spot",
+  },
+
+  {
+    name: "two",
+    value: 2,
+    curLoc: "two-spot",
+    legalLoc: "two-spot",
+  },
+  {
+    name: "three",
+    value: 3,
+    curLoc: "three-spot",
+    legalLoc: "three-spot",
+  },
+
+  {
+    name: "four",
+    value: 4,
+    curLoc: "four-spot",
+    legalLoc: "four-spot",
+  },
+  {
+    name: "five",
+    value: 5,
+    curLoc: "five-spot",
+    legalLoc: "five-spot",
+  },
+
+  {
+    name: "six",
+    value: 6,
+    curLoc: "six-spot",
+    legalLoc: "six-spot",
+  },
+  {
+    name: "seven",
+    value: 7,
+    curLoc: "seven-spot",
+    legalLoc: "seven-spot",
+  },
+
+  {
+    name: "eight",
+    value: 8,
+    curLoc: "eight-spot",
+    legalLoc: "eight-spot",
+  },
+  {
+    name: "nine",
+    value: 9,
+    curLoc: "nine-spot",
+    legalLoc: "nine-spot",
+  },
+  {
+    name: "ten",
+    value: 10,
+    curLoc: "ten-spot",
+    legalLoc: "ten-spot",
+  },
+
+  {
+    name: "eleven",
+    value: 11,
+    curLoc: "eleven-spot",
+    legalLoc: "eleven-spot",
+  },
+
+  {
+    name: "twelve",
+    value: 12,
+    curLoc: "twelve-spot",
+    legalLoc: "twelve-spot",
+  },
+  {
+    name: "thirteen",
+    value: 13,
+    curLoc: "thirteen-spot",
+    legalLoc: "thirteen-spot",
+  },
+  {
+    name: "fourteen",
+    value: 14,
+    curLoc: "fourteen-spot",
+    legalLoc: "fourteen-spot",
+  },
+
+  {
+    name: "fifteen",
+    value: 15,
+    curLoc: "fifteen-spot",
+    legalLoc: "fifteen-spot",
+  },
+
+  {
+    name: "empty",
+    value: "",
+    curLoc: "empty-spot",
+    legalLoc: "empty-spot",
+  },
+];
+
 export function stateInit() {
   state.map((obj) => {
     obj.curLoc = obj.legalLoc;
@@ -129,11 +236,9 @@ export function randomizeState() {
 }
 
 export function checkCorrect(array) {
-  console.log(array);
   const arrayForCheck = array.filter((obj) => obj.curLoc === obj.legalLoc);
   return array.length === arrayForCheck.length;
 }
 
 export { state };
-
-export let records = [];
+export { stateTest };

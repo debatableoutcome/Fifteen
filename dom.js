@@ -10,6 +10,8 @@ const dom = {
   winView: getEl(".win-view"),
   bestResultView: getEl(".best-result-view"),
   bestMoves: getEl(".best-moves"),
+  winMoves: getEl(".win-moves"),
+  gameName: getEl(".game-name"),
   playField: getEl(".play-field"),
 };
 
