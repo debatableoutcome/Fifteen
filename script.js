@@ -2,9 +2,16 @@
 import dom from "./dom.js";
 import { store } from "./store.js";
 import { neighbours } from "./rules.js";
-import { checkCorrect, state, stateTest, stateInit } from "./coords.js";
+import {
+  checkCorrect,
+  state,
+  stateTest,
+  stateInit,
+  randomizeState,
+} from "./coords.js";
 
 let records = store.get("records") || [];
+// let records = []; // restart strorage
 let moves = 0;
 const initialTime = 1200;
 
@@ -97,7 +104,6 @@ function open() {
     const { moves, time } = getMin(records);
     dom.gameName.classList.add("hidden");
     dom.bestMoves.textContent = moves;
-    // dom.timeResult.textContent = time;
   }
   return prepareHTML(array);
 }
@@ -127,11 +133,12 @@ function win() {
 function startGame() {
   dom.winView.classList.add("hidden");
   dom.loseView.classList.add("hidden");
-  // reset timer and moves
+
   if (timer) clearInterval(timer);
   timer = startCountDown();
   moves = 0;
   dom.moves.textContent = moves;
+  // Last best result display
   if (records.length > 0) {
     dom.bestResultView.classList.remove("hidden");
     const sorted = records.sort((a, b) => a - b);
@@ -142,8 +149,7 @@ function startGame() {
   }
 
   unblockTiles();
-  // prepareHTML(randomizeState());
-  prepareHTML(stateTest);
+  prepareHTML(randomizeState());
 }
 
 const startCountDown = function () {
@@ -166,24 +172,10 @@ const startCountDown = function () {
   return timer;
 };
 let timer;
+
 // &&&&&&&&&&&&&&&&&& LISTENERS &&&&&&&&&&&&&&&&&&&&&&&&&
 
 window.addEventListener("DOMContentLoaded", open);
 dom.btnStart.addEventListener("click", startGame);
 
 dom.parentNums.addEventListener("click", (event) => detectLocs(event));
-
-// Tasks
-
-//BUGS:
-
-//FEATURES:
-
-// Sound
-// Settings - sound off/on
-// Settings - timer options?
-
-// DONE TODAY:
-// Remember the record - render
-//localStorage
-// sound

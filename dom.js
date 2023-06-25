@@ -3,7 +3,7 @@ const getEl = (el) => document.querySelector(el);
 const dom = {
   parentNums: getEl(".parent-nums"),
   main: getEl(".main"),
-  btnStart: getEl(".start"),
+  btnStart: getEl(".btn-start"),
   moves: getEl(".moves"),
   timer: getEl(".timer"),
   loseView: getEl(".lose-view"),

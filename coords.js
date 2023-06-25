@@ -220,9 +220,7 @@ export function stateInit() {
   });
   return state;
 }
-// function getRandom(max) {
-//   return Math.floor(Math.random() * max);
-// }
+
 export function randomizeState() {
   const availableSpots = state.map((obj) => obj.legalLoc);
   availableSpots.pop();
