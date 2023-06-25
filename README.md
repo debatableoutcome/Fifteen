@@ -1,7 +1,5 @@
 # Fifteen Puzzle Game
 
-# Fifteen Puzzle Game
-
 ![Game Screenshot](readme-imgs/game01.png)
 
 Welcome to the Fifteen Puzzle game, a challenging yet fun test of your problem-solving abilities, implemented using pure vanilla JS! This project is an exercise in problem-solving and programming without relying on external libraries, frameworks or ChatGPT, only documentation was used during the development process.
