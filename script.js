@@ -2,13 +2,7 @@
 import dom from "./dom.js";
 import { store } from "./store.js";
 import { neighbours } from "./rules.js";
-import {
-  checkCorrect,
-  state,
-  stateTest,
-  stateInit,
-  randomizeState,
-} from "./coords.js";
+import { checkCorrect, state, stateInit, randomizeState } from "./coords.js";
 
 let records = store.get("records") || [];
 // let records = []; // restart strorage
@@ -176,6 +170,7 @@ let timer;
 // &&&&&&&&&&&&&&&&&& LISTENERS &&&&&&&&&&&&&&&&&&&&&&&&&
 
 window.addEventListener("DOMContentLoaded", open);
+
 dom.btnStart.addEventListener("click", startGame);
 
 dom.parentNums.addEventListener("click", (event) => detectLocs(event));
